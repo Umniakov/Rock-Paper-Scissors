@@ -4,6 +4,9 @@ let counter = document.querySelector('.counter');
 let inputRock = document.querySelector('input.rock');
 let inputPaper = document.querySelector('input.paper');
 let inputScissors = document.querySelector('input.scissors');
+let finalDisplay = document.querySelector('#win-lose-state');
+let winLoseMessage = document.querySelector('.win-lose-message');
+let restartButton = document.querySelector('#restart-button');
 let winCounter = 0;
 let loseCounter = 0;
 let getPlayerChoice = playerChoice.addEventListener('click', e => playRound(e.target.className));
@@ -62,20 +65,31 @@ function counterWinLose() {
 }
 
 function outOfFiveResult(result) {
-    if (result) {
-        counter.textContent = `Congratulation! You Win!`;
-    } else {
-        counter.textContent = `ILLUMINATED`;
-    }
-    winCounter = 0;
-    loseCounter = 0;
-    // document.body.style.background = 'black';
-    // playerChoice.style.opacity = 0;
+    messageDisplayed('');
+    counter.textContent = '';
     inputRock.disabled = true;
     inputPaper.disabled = true;
     inputScissors.disabled = true;
-    document.querySelector('.winning-message');
+    restartButton.classList.add('visible');
+    finalDisplay.classList.add('winning-message');
+    if (result) {
+        winLoseMessage.textContent = `Congratulation! You Win!`;
+    } else {
+        winLoseMessage.textContent = `ILLUMINATED`;
+    }
+    winCounter = 0;
+    loseCounter = 0;
 }    
 
+restartButton.addEventListener('click', restart);
 
-//to the center of the screen with a button to start again;
+function restart() {
+    restartButton.classList.remove('visible');
+    finalDisplay.classList.remove('winning-message');
+    inputRock.disabled = false;
+    inputPaper.disabled = false;
+    inputScissors.disabled = false;
+    winLoseMessage.textContent = '';
+}
+
+//to the center of the screen with a button to start again - v
