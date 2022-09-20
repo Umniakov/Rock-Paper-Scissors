@@ -4,7 +4,6 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1.5rem;
     box-sizing: border-box;
-    /* border: 1px solid red !important; */
 }
 
 body {
@@ -85,6 +84,7 @@ div.player > p {
     flex-direction: row;
     gap: 20px;
     justify-content: center;
+    align-items: center;
     }
 }
 
@@ -129,4 +129,38 @@ div.player > p {
 
 .show {
     display: flex;
+}
+
+@media (max-width: 880px) {
+    body {
+        height: 98vh;
+        padding-top: 25px;
+        justify-content: center;
+        gap: 1px;
+    }
+    .shape {
+        height: fit-content;
+        margin: 0;
+    }
+    .header {
+        font-size: 1rem;
+        padding: 0;
+    }
+    .player,
+    .pc {
+        height: 20vh;
+        padding: 5px;
+    }
+    .side-img {
+        height: auto;
+        width: 70px;
+    }
+    .button-img {
+        height: auto;
+        width: 80px;
+    }
+    div.output > div img {
+        height: auto;
+        width: 60px;
+    }
 }
