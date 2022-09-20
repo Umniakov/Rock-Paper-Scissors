@@ -9,18 +9,36 @@
     <title>RPS</title>
 </head>
 <body>
-    <div class="buttons">
-        <form class="form">
-            <input type="button" value="Rock" class="rock">
-            <input type="button" value="Paper" class="paper">
-            <input type="button" value="Scissors" class="scissors">
-        </form>
+    <div class="player">
+        <img src="./img/player.png" alt="player" class="side-img">
+        <p>Score:</p>
+        <p class="score-player"></p>
     </div>
-    <div class="output"></div>
-    <div class="counter"></div>
-    <div id="win-lose-state">
-        <p class="win-lose-message"></p>
-        <input type="button" id="restart-button" class="end-button" value="Restart"></input>
+    <div class="shape">
+        <div class="header">HI! Choose your fighter.</div>
+        <div class="buttons">
+            <div class="button" id="rock">
+                <img src="./img/stone.png" alt="rock" class="button-img">
+            </div>
+        <div class="button" id="paper">
+                <img src="./img/paper.png" alt="paper" class="button-img">
+        </div>
+        <div class="button" id="scissors">
+                <img src="./img/scissors.png" alt="scissors" class="button-img">
+        </div>
+        </div>
+        <div class="output"></div>
+        <div class="counter"></div>
+
+        <!-- <div id="win-lose-state">
+            <p class="win-lose-message"></p>
+            <input type="button" id="restart-button" class="end-button" value="Restart"></input>
+        </div> -->
+    </div>
+    <div class="pc">
+        <img src="./img/pc.png" alt="player" class="side-img">
+        <p>Score:</p>
+        <p class="score-pc"></p>
     </div>
 </body>
 </html>
