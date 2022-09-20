@@ -71,7 +71,6 @@ function scoreIteration(result) {
 }
 
 function finishGameAfterFiveWins() {
-    console.log(final);
     if (countWinPlayer === 5){
         finalMessage.textContent = 'You won!';
         finalMessage.style.color = 'rgba(96, 243, 11, 0.849)';
