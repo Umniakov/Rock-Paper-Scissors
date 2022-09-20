@@ -2,14 +2,14 @@ const states = ['rock,scissors,win', 'paper,rock,win', 'scissors,paper,win',
      'scissors,rock,lose', 'rock,paper,lose', 'paper,scissors,lose'];
 
 const userInput = document.querySelectorAll('.button');
-const resultPlacement = document.querySelector('.output');
-const scorePlayer = document.querySelector('.score-player')
-const scorePc = document.querySelector('.score-pc')
-let roundsCounter = 0;
+const resultPlacement = document.querySelectorAll('.output > div');
+const scorePlayer = document.querySelector('.score-player');
+const scorePc = document.querySelector('.score-pc');
+const final = document.querySelector('.final');
+const finalMessage = document.querySelector('.message');
+const restartButton = document.querySelector('#restart-button');
 let countWinPlayer = 0;
 let countWinPc = 0;
-
-
 
 let userChoice = userInput.forEach(e => e.addEventListener('click', getUserValue));
 
@@ -31,25 +31,32 @@ let randomNumber = Math.floor(Math.random() * 3);
 }
 
 function playRound(user, comp) {
-    roundsCounter++;
     let input = `${user},${comp}`;
     if (user === comp) {
-        // console.log('draw')
+        screenInfoUpdate(user, comp, 'draw')
+        return;
     } else {
         let compare = states.filter(value => value.startsWith(input));
         let result = compare[0].split(',')
         scoreIteration(result[2]);
+        screenInfoUpdate(user, comp, result[2]);
     }
-    checkRoundsPlayed();
 }
 
-function checkRoundsPlayed() {
-
-}
-
-function screenInfoUpdate() {
-    resultPlacement.textContent = 'hi';
-    console.log('')
+function screenInfoUpdate(user, comp, result) {
+    if (result === 'win') {
+        resultPlacement[0].setAttribute('style', 'border: 1px solid green; border-radius: 10px;');
+        resultPlacement[2].setAttribute('style', 'border: 1px solid red; border-radius: 10px;');
+    } else if (result === 'lose') {
+        resultPlacement[0].setAttribute('style', 'border: 1px solid red; border-radius: 10px;');
+        resultPlacement[2].setAttribute('style', 'border: 1px solid green; border-radius: 10px;');
+    } else {
+        resultPlacement[0].setAttribute('style', 'border: 1px solid blue; border-radius: 10px;');
+        resultPlacement[2].setAttribute('style', 'border: 1px solid blue; border-radius: 10px;');
+    }
+    resultPlacement[0].innerHTML = `<img width="80px" src="./img/${user}.png">`;
+    resultPlacement[1].innerHTML = `<img width="80px" src="./img/hit.gif">`;
+    resultPlacement[2].innerHTML = `<img width="80px" src="./img/${comp}.png">`;
 }
 
 function scoreIteration(result) {
@@ -60,13 +67,33 @@ function scoreIteration(result) {
         countWinPc++;
         scorePc.textContent = countWinPc;
     }
-}
-scoreIteration();
-function createScore() {
-
+    finishGameAfterFiveWins()
 }
 
-function updateScore() {
-
+function finishGameAfterFiveWins() {
+    console.log(final);
+    if (countWinPlayer === 5){
+        finalMessage.textContent = 'You won!';
+        finalMessage.style.color = 'rgba(96, 243, 11, 0.849)';
+        restartGame();
+    } else if (countWinPc === 5) {
+        finalMessage.textContent = 'You lost!';
+        finalMessage.style.color = 'red';
+        restartGame();
+    }   
 }
-screenInfoUpdate();
+
+function restartGame() {
+    final.classList.add('show');
+    restartButton.addEventListener('click', () => {
+        countWinPc = 0;
+        countWinPlayer = 0;
+        scorePlayer.textContent = '';
+        scorePc.textContent = '';
+        final.classList.remove('show');
+        resultPlacement.forEach(e => {
+            e.innerHTML = '';
+            e.setAttribute('style', '');
+        })
+    })
+}

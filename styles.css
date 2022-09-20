@@ -87,3 +87,46 @@ div.player > p {
     justify-content: center;
     }
 }
+
+.output {
+    margin: 20px 0 0 0;
+    display: flex;
+    gap: 10px;
+}
+
+.final {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .90);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.message {
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+#restart-button {
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+#restart-button:hover {
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+}
+
+.show {
+    display: flex;
+}
